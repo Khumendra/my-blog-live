@@ -1,0 +1,51 @@
+{% extends 'base.html' %} 
+
+{% block css %}
+<style>
+  .container{
+     min-height: 150vh;
+  }
+
+
+</style>
+{% endblock css %}
+
+{% block blogactive %}active{% endblock blogactive %}
+
+
+{% block body %}
+
+
+
+<div class="container">
+  <h1 class="my-3">Welcome to Moutain Coders Blog</h1>
+
+  {% for blog in blogs %}
+
+  <div class="my-2">
+   
+      <h3 class="text-dark"><a href="/blogpost/{{blog.slug}}" class="text-dark">{{blog.title}}</a></h3>
+
+      <div class="my-4">{{blog.short_desc|slice:245}}...</div>
+  
+      <a class="btn btn-outline-primary" href="/blogpost/{{blog.slug}}">Read More...</a>
+  </div>
+
+  {% endfor %}
+<div class="my-3">
+  {% if prev %}
+  <a  href="/blog/?page={{prev}}" class="btn btn-outline-primary btn-sm" > &laquo; Previous </a>  
+    {% else %}
+    <!-- <button class="btn-success"> <a href="#" class="text-light" >&laquo; Previous </a>  </button> -->
+  {% endif %}
+
+  {% if nxt %}
+  <a class="btn btn-outline-primary btn-sm float-right" href="/blog/?page={{nxt}}">  Next &raquo;</a>  
+  {% else %}
+  <!-- <button class="btn-success float-right"> <a class="text-light" href="/blog/?page={{prev}}">Next &raquo;</a>  </button> -->
+  {% endif %}
+
+  
+</div>
+</div>
+{% endblock body %}
